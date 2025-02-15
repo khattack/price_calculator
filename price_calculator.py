@@ -22,7 +22,10 @@ total_time = (end_time - start_time).total_seconds() / 3600
 target_time_diff = (target_time - start_time).total_seconds() / 3600
 
 # Calculate growth rate per hour
-growth_rate = (end_price / start_price) ** (1 / total_time) - 1
+if end_price > start_price:  # Upward trend
+    growth_rate = (end_price / start_price) ** (1 / total_time) - 1
+else:  # Downward trend
+    growth_rate = (end_price / start_price) ** (1 / total_time) - 1
 
 # Calculate predicted price
 predicted_price = start_price * (1 + growth_rate) ** target_time_diff
